@@ -7,32 +7,33 @@
     <title>Inscription</title>
 </head>
 <body>
-<form method="get" action="javascript: void(0);" id="login-form" class="login-form" autocomplete="off" role="main">
+
+{{ form_start(form, {'attr': {'id': 'login-form', 'class': 'login-form', 'autocomplete': 'off', 'role': 'main'}}) }}
     <h1 class="a11y-hidden">Login Form</h1>
     <div>
         <label class="label-email">
-            <input type="text" class="text" name="text" placeholder="Nom complet" tabindex="1" required />
+            {{ form_widget(form.fullName) }}
             <span class="required">Nom</span>
         </label>
     </div>
     <div>
         <label class="label-email">
-            <input type="text" class="text" name="text" placeholder="Matricule" tabindex="1" required />
+            {{ form_widget(form.matricule) }}
             <span class="required">Matricule</span>
         </label>
     </div>
-    <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
+    <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3"/>
     <label class="label-show-password" for="show-password">
         <span>Show Password</span>
     </label>
     <div>
         <label class="label-password">
-            <input type="text" class="text" name="password" placeholder="Password" tabindex="2" required />
+            {{ form_widget(form.password) }}
             <span class="required">Password</span>
         </label>
     </div>
-    <input type="submit" value="Connexion" />
-    <div class="email"> Vous avez un compte
+    <input type="submit" value="Inscription"/>
+    <div class="email"> Vous avez un compte ?
         <a href="#">Connectez-vous</a>
     </div>
     <figure aria-hidden="true">
@@ -47,7 +48,7 @@
         <div class="shirt-1"></div>
         <div class="shirt-2"></div>
     </figure>
-</form>
-<script src="./lib/bootstrap.bundle.min.js" ></script>
+    {{ form_end(form) }}
+<script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
