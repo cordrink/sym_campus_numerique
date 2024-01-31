@@ -1,0 +1,79 @@
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form >
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputMatricule">Matricule</label>
+    <input type="text" value="{{ last_username }}" name="matricule" id="inputMatricule" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+
+
+
+</form>
+{% endblock %}#}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/register.css') }}">
+    <title>Connexion</title>
+</head>
+<body>
+<form method="post" id="login-form" class="login-form" autocomplete="off" role="main">
+    <h1 class="a11y-hidden">Login Form</h1>
+    <div>
+        <label for="inputMatricule" class="label-email">
+            <input type="text" value="{{ last_username }}" name="matricule" id="inputMatricule" placeholder="Matricule" tabindex="1" class="form-control" autocomplete="username" required autofocus>
+            <span class="required">Matricule</span>
+        </label>
+    </div>
+    <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
+    <label class="label-show-password" for="show-password">
+        <span>Show Password</span>
+    </label>
+    <div>
+        <label class="label-password">
+            <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control text" tabindex="2" autocomplete="current-password" required>
+            <span class="required">Password</span>
+        </label>
+    </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+    <input type="submit" value="Connexion" />
+    <div class="email">Vous n'avez pas de compte
+        <a href="{{ path('app_register') }}">Inscrivez-vous</a>
+    </div>
+    <figure aria-hidden="true">
+        <div class="person-body"></div>
+        <div class="neck skin"></div>
+        <div class="head skin">
+            <div class="eyes"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="hair"></div>
+        <div class="ears"></div>
+        <div class="shirt-1"></div>
+        <div class="shirt-2"></div>
+    </figure>
+</form>
+<script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

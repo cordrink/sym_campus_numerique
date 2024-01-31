@@ -1,0 +1,260 @@
+*, ::before, ::after {
+    padding: 0;
+    margin: 0 ;
+    box-sizing: border-box !important;
+}
+
+body {
+    font-family: 'Montserrat', 'Roboto Mono', Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
+}
+
+nav {
+    background-color: white;
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    right: -220px;
+    top: 0;
+    transition: all .3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    z-index: 1000;
+}
+
+nav:hover {
+    right: 0;
+}
+
+.b1, .b2, .b3 {
+    background-color: #333;
+    position: absolute;
+    border: 5px;
+}
+
+.b1 {
+    width: 2px;
+    height: 150px;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+}
+
+.b2 {
+    width: 2px;
+    height: 100px;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+.b3 {
+    width: 2px;
+    height: 50px;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+}
+
+.liste {
+    list-style: none;
+    font-size: 22px;
+    height: 100%;
+    border-left: 1px solid #306090;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/*nav {
+    position: sticky;
+    width: 90%;
+    padding: 15px;
+    border-radius: 0 0 5px 5px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px grey;
+    background-color: white;
+}
+
+
+
+nav ul {
+    list-style-type: none;
+    margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    height: 100%;
+    width: 30%;
+}
+
+nav li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    position: relative;
+}
+
+nav li a:hover {
+    color: #b86b9e;
+}
+
+nav li a::after {
+    content: "";
+    display: inline-block;
+    background-color: #b86b9e;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 3px;
+    transform: scaleX(0);
+    width: 100%;
+    margin-top: 3px;
+    transition: transform ease-in-out .3s;
+}
+
+nav li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: center;
+}
+
+.btn-account {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.btn-account .btn {
+    text-decoration: none;
+    padding: 10px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-account .btn1 {
+    background-color: #b86b9e;
+    color: white;
+}
+
+.btn-account .btn1:hover {
+    box-shadow: 0 0 5px grey;
+}
+
+.btn-account .btn2 {
+    border: 2px solid #b86b9e;
+    color: #b86b9e;
+}
+
+.btn-account .btn2:hover {
+    background-color: #b86b9e;
+    color: white;
+    box-shadow: 0 0 5px grey;
+}*/
+
+/*table*/
+
+
+
+main {
+    width: 80%;
+    margin: 20px auto 0;
+}
+
+main .logo {
+    text-decoration: none;
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    color: #b86b9e;
+}
+
+main .logo .accronime {
+    color: black;
+    font-size: 25px;
+}
+
+main .logo .desc {
+    color: #306090;
+}
+
+.important {
+    text-transform: uppercase;
+    position: relative;
+    margin: 20px 0;
+    padding: 3px;
+    color: #306090;
+}
+
+main h1::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 5px;
+    background-color: #306090;
+    left: -3px;
+}
+
+main h1::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 3px;
+    width: 100%;
+    background-color: #306090;
+    bottom: -3px;
+    left: -3px;
+}
+
+.event-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-container {
+    margin: 10px 10px 10px 0;
+    padding: 10px 10px 10px 0;
+    display: flex;
+    gap: 30px;
+}
+
+main .btn {
+    text-decoration: none;
+    display: inline-block;
+    background-color: #306090;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+main .btn:hover {
+    box-shadow: 0 0 5px grey;
+}
+
+.event-btn .btn1 {
+    background-color: transparent;
+    color: #306090;
+    border: 2px solid #306090;
+}
+
+.event-btn .btn1:hover {
+    background-color: #306090;
+    color: white;
+}
+
+.add-btn .btn {
+    height: 42px;
+}
+
+/*table*/
