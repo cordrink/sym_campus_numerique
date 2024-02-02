@@ -30,7 +30,8 @@ class AppFixtures extends Fixture
             $event = new Event();
             $event->setTitle($faker->description(30))
                 ->setCreatedAt($faker->dateTimeImmutable())
-                ->setUser($users[rand(0, count($users) - 1)])
+                ->setDescription($faker->description(60))
+                ->setUser($users[rand(0, count($users) - 1)]);
 
             $manager->persist($event);
         }

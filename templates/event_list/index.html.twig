@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventListController!{% endblock %}
+
+{% block page_title %}
+    Evenements
+{% endblock %}
+
+
+{% block body %}
+    <div class="event-btn">
+        <section class="btn-container">
+            <a href="#" class="btn btn2">Tous les évenements</a>
+            <a href="#" class="btn btn1">Mes évenements</a>
+        </section>
+
+        <section class="add-btn">
+            <a href="#" class="btn">Ajouter +</a>
+        </section>
+    </div>
+
+    <section class="table-container">
+
+        <table id="myTable">
+            <thead>
+            <tr>
+                <th>N</th>
+                <th>Titre</th>
+                <th>Categorie</th>
+                <th>Date debut</th>
+                <th>Date fin</th>
+                <th>operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.id }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>Row 1 Data 1</td>
+                    <td>{{ event.createdAt.format('Y-m-d') }}</td>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
