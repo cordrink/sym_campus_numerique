@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -15,15 +16,18 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 60)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'categories')]
-    private Collection $event;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'CatEvent')]
+    private Collection $events;
 
     public function __construct()
     {
-        $this->event = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -43,18 +47,31 @@ class Category
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Event>
      */
-    public function getEvent(): Collection
+    public function getEvents(): Collection
     {
-        return $this->event;
+        return $this->events;
     }
 
     public function addEvent(Event $event): static
     {
-        if (!$this->event->contains($event)) {
-            $this->event->add($event);
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->addCatEvent($this);
         }
 
         return $this;
@@ -62,7 +79,9 @@ class Category
 
     public function removeEvent(Event $event): static
     {
-        $this->event->removeElement($event);
+        if ($this->events->removeElement($event)) {
+            $event->removeCatEvent($this);
+        }
 
         return $this;
     }

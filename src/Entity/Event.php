@@ -25,6 +25,9 @@ class Event
     #[ORM\Column(nullable: true)]
     private ?bool $isValid = null;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'events')]
+    private Collection $CatEvent;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -35,12 +38,26 @@ class Event
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'event')]
-    private Collection $categories;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $startAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $endAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Comment::class)]
+    private Collection $comment;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $illustration = null;
+
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->CatEvent = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,29 +137,104 @@ class Event
         return $this;
     }
 
+    public function getStartAt(): ?\DateTimeImmutable
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(?\DateTimeImmutable $startAt): static
+    {
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getEndAt(): ?\DateTimeImmutable
+    {
+        return $this->endAt;
+    }
+
+    public function setEndAt(?\DateTimeImmutable $endAt): static
+    {
+        $this->endAt = $endAt;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Category>
      */
-    public function getCategories(): Collection
+    public function getCatEvent(): Collection
     {
-        return $this->categories;
+        return $this->CatEvent;
     }
 
-    public function addCategory(Category $category): static
+    public function addCatEvent(Category $catEvent): static
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->addEvent($this);
+        if (!$this->CatEvent->contains($catEvent)) {
+            $this->CatEvent->add($catEvent);
         }
 
         return $this;
     }
 
-    public function removeCategory(Category $category): static
+    public function removeCatEvent(Category $catEvent): static
     {
-        if ($this->categories->removeElement($category)) {
-            $category->removeEvent($this);
+        $this->CatEvent->removeElement($catEvent);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComment(): Collection
+    {
+        return $this->comment;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comment->contains($comment)) {
+            $this->comment->add($comment);
+            $comment->setEvent($this);
         }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getEvent() === $this) {
+                $comment->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(string $illustration): static
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }
