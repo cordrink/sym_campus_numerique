@@ -24,10 +24,16 @@
             <div class="b3"></div>
 
             <ul class="liste">
-                <li class="items">Accueil</li>
-                <li class="items">Services</li>
-                <li class="items">Portfolio</li>
-                <li class="items">Contact</li>
+                <li class="items"> <a href="{{ path('app_home') }}">Accueil Actu</a></li>
+                <li class="items"> <a href="{{ path('app_event_list') }}">Evenements</a></li>
+                <li class="items"><a href="{{ path('admin') }}"></a></li>
+                {% if app.user %}
+                    <li class="items"> <a href="{{ path('app_account') }}">Compte</a></li>
+                    <li class="items"> <a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                {% else %}
+                    <li class="items"> <a href="{{ path('app_login') }}">Connexion</a></li>
+                    <li class="items"> <a href="{{ path('app_register') }}">Inscription</a></li>
+                {% endif %}
             </ul>
         </nav>
         <!--    Barre de navigation    -->
