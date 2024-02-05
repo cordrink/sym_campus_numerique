@@ -1,17 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EventListController!{% endblock %}
-
-{% block page_title %}
-    Evenements
-{% endblock %}
-
+{% block title %}Campus numerique - EventManagersController!{% endblock %}
 
 {% block body %}
+
     <div class="event-btn">
         <section class="btn-container">
-            <a href="{{ path('app_event_list') }}" class="btn btn2">Tous les évenements</a>
-            <a href="{{ path('app_event_managers') }}" class="btn btn1">Mes évenements</a>
+            <a href="{{ path('app_event_list') }}" class="btn btn1 ">Tous les évenements</a>
+            <a href="#" class="btn btn2">Mes évenements</a>
         </section>
 
         <section class="add-btn">
@@ -37,15 +33,15 @@
                 <tr>
                     <td>{{ event.id }}</td>
                     <td>{{ event.title }}</td>
-                    <td>Row 1 Data 1</td>
-                    <td>{{ event.createdAt.format('Y-m-d') }}</td>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
+                    <td>{{ event.catEvent }}</td>
+                    <td>{{ event.startAt.format('Y-m-d') }}</td>
+                    <td>{{ event.endAt.format('Y-m-d') }}</td>
+                    <td>modifier</td>
                 </tr>
             {% endfor %}
-
 
             </tbody>
         </table>
     </section>
+
 {% endblock %}

@@ -40,8 +40,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 15; $i++) {
             $user = new User();
             $user->setFullName($faker->full_name())
-                ->setMatricule($faker->email())
-                ->setPassword(sha1("test"))
+                ->setMatricule('22G0'. $i)
+                ->setPassword(password_hash('test', PASSWORD_BCRYPT))
                 ->setCreatedAt($faker->dateTimeImmutable());
 
 
@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
 
 
         $events = [];
-        for ($i = 0; $i < 300; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $event = new Event();
             $event->setTitle($faker->description(30))
                 ->setCreatedAt($faker->dateTimeImmutable())

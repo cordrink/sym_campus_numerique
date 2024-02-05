@@ -38,6 +38,11 @@
 <body>
 <form method="post" id="login-form" class="login-form" autocomplete="off" role="main">
     <h1 class="a11y-hidden">Login Form</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
     <div>
         <label for="inputMatricule" class="label-email">
             <input type="text" value="{{ last_username }}" name="matricule" id="inputMatricule" placeholder="Matricule" tabindex="1" class="form-control" autocomplete="username" required autofocus>

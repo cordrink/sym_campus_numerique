@@ -1,47 +1,87 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Campus Numerique - Evenement{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/components/eventDecsit.css') }}">
+{% endblock %}
+
+{% block page_title %}
+    Titre evenemnt
+{% endblock %}
+
+
 
 {% block body %}
-    <div class="single-article">
-        <div class="single-articles">
+    <section class="single-event">
+        <section class="presentation">
+            <div class="event-image"></div>
 
-            <div class="article-image" style="background-image: url('{{ article.imageUrl }}')">
-            </div>
-
-            <div class="article-details flex">
-                <div class="article-author-details">
-                    <div class="article-author-picture">
-                        {{ include('blog/picture.html.twig') }}
-                    </div>
+            <div class="event-details flex">
+                <div class="event-author-details">
+                    <div class="event-author-name">lorem</div>
                 </div>
-                <div class="article-content-details">
-                    <h2 class="article-title">{{ event.title }}</h2>
-                    <div class="article-createdAt">{{  }}</div>
 
-                    <div class="article-categories flex wrap">
-                        {% for category in article.categories %}
-                            <a href="{{ path('app_article_by_category', {'slug' : category.slug}) }}"
-                               class="article-category-item badge">
-                                {{ category.name }}
-                                ({{ category.articles | length }}) article(s) publié
-                            </a>
-                        {% endfor %}
+                <div class="event-content-details">
+                    <h2 class="event-title">Lorem, ipsum dolor.</h2>
+                    <div class="event-createdAt">12-3-23 il y a (3ans)</div>
+
+                    <div class="event-content">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, aperiam pariatur aliquam quisquam dolores cupiditate aspernatur itaque porro neque possimus saepe error praesentium nostrum obcaecati vitae nemo eius. Corrupti, deleniti.
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="content animate__backInUp">
-                {{ article.content | raw }}
-            </div>
+        <section class="comment-user">
+            <div class="list-comment">
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
 
-            {% if app.user is same as (article.author) %}
-                <div class="action animate__backInUp">
-                    <a href="{{ path('app_article_edit', {'id' : article.id}) }}" class="btn">Edit</a>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
                 </div>
-            {% endif %}
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
 
-        </div>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
+                </div>
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
 
-    </div>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
+                </div>
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
+
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
+                </div>
+
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
+
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
+                </div>
+                <div class="user-comment">
+                    <div class="event-author-details">
+                        <div class="event-author-name">lorem</div>
+                    </div>
+
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
+                </div>
+            </div>
+            <form action="">
+                <input type="text">
+                <input type="submit" value="envoiye">
+            </form>
+        </section>
+    </section>
 {% endblock %}
