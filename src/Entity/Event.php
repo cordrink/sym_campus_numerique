@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -22,7 +23,7 @@ class Event
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?bool $isValid = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'events')]
@@ -73,6 +74,8 @@ class Event
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        $this->setSlug((new Slugify())->slugify($this->title));
 
         return $this;
     }

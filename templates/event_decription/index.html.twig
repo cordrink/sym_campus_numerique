@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Campus Numerique - Evenement{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/components/eventDecsit.css') }}">
 {% endblock %}
 
 {% block page_title %}
-    Titre evenemnt
+    {{ event.title }}
 {% endblock %}
 
 
@@ -14,7 +15,9 @@
 {% block body %}
     <section class="single-event">
         <section class="presentation">
-            <div class="event-image"></div>
+            <div class="event-image" style="background-image: url('{{ event.illustration }}')">
+                <img src="../../public{{ event.illustration }}" alt="{{ event.slug }}">
+            </div>
 
             <div class="event-details flex">
                 <div class="event-author-details">
@@ -22,11 +25,11 @@
                 </div>
 
                 <div class="event-content-details">
-                    <h2 class="event-title">Lorem, ipsum dolor.</h2>
-                    <div class="event-createdAt">12-3-23 il y a (3ans)</div>
+                    <h2 class="event-title">{{ event.title }}</h2>
+                    <div class="event-createdAt">{{ event.createdAt.format('Y-m-d') }}</div>
 
                     <div class="event-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, aperiam pariatur aliquam quisquam dolores cupiditate aspernatur itaque porro neque possimus saepe error praesentium nostrum obcaecati vitae nemo eius. Corrupti, deleniti.
+                        {{ event.description }}
                     </div>
                 </div>
             </div>
@@ -34,54 +37,20 @@
 
         <section class="comment-user">
             <div class="list-comment">
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
+                {% for comment in comments %}
+                    <div class="user-comment">
+                        <div class="event-author-details">
+                            <div class="event-author-name">{{ comment.author.fullName }}</div>
+                        </div>
+
+                        {{ comment.content }}
                     </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
-                    </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
-                    </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
-                    </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
-
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
-                    </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
-                <div class="user-comment">
-                    <div class="event-author-details">
-                        <div class="event-author-name">lorem</div>
-                    </div>
-
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa quia error ad voluptatem quam!
-                </div>
+                {% endfor %}
             </div>
-            <form action="">
-                <input type="text">
-                <input type="submit" value="envoiye">
-            </form>
+            {{ form_start(form) }}
+                {{ form_row(form.content) }}
+                <input type="submit" value="Envoye">
+            {{ form_end(form) }}
         </section>
     </section>
 {% endblock %}

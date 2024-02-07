@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddEventController!{% endblock %}
+
+{% block page_title %}
+    Ajout de formulaire
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <style>
+        .boxForm {
+            margin-top: 15px;
+            padding: 20px;
+            width: 700px;
+            height: 620px;
+            background: #333;
+            border-radius: 5px;
+        }
+
+        .titleInp, textarea, select, input[type="file"] {
+            display: block;
+            margin: 10px auto;
+            outline: none;
+            background-color: #f1f1f1;
+            width: 95%;
+            border: 0;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+
+        .lableTitle, .labelSelect, .labelTxt {
+            color: #f1f1f1;
+            display: block;
+            margin: 0 auto;
+            width: 95%;
+            position: relative;
+            top: 5px;
+        }
+
+        .flex2inputs {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .flexInp {
+            margin: 8px auto;
+            outline: 0;
+            background: #f1f1f1;
+            width: 100%;
+            border: 0;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+
+        .flexLefInp, .flexRightInp {
+            flex-basis: 45%;
+        }
+
+        .labelflex {
+            color: #f1f1f1;
+            position: relative;
+            top: 8px;
+        }
+
+        input[type="submit"] {
+            width: 45%;
+            display: block;
+            margin: 45px auto 0 auto;
+            outline: none;
+            border: 0;
+            height: 50px;
+            transition: all .2s linear;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 17px;
+        }
+        .choice {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 95%;
+            margin-left: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background: lightblue;
+        }
+    </style>
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="global-form" style="display: flex; justify-content: center">
+        <section class="boxForm">
+            {{ form_start(form) }}
+            {{ form_row(form.title, { 'attr': {'class': 'titleInp'} }) }}
+
+            <div class="flex2inputs">
+                <div class="flexLefInp">
+                    {{ form_row(form.startAt, { 'attr': {'class': 'flexInp'} }) }}
+                </div>
+                <div class="flexRightInp">
+                    {{ form_row(form.endAt, { 'attr': {'class': 'flexInp'} }) }}
+                </div>
+            </div>
+
+
+            {{ form_row(form.CatEvent, { 'attr': {'class': 'choice_categories'} }) }}
+
+
+            {{ form_row(form.illustration, { 'attr': {'class': 'flexInp'} }) }}
+
+            {{ form_row(form.description) }}
+            <input type="submit" value="Creer">
+            {{ form_end(form) }}
+        </section>
+    </div>
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.choice_categories').select2();
+        });
+    </script>
+{% endblock %}
+
